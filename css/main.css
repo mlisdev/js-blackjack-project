@@ -28,32 +28,32 @@ h1 {
 }
 
 .parent {
-    display: grid;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-flex-direction:column;
+    flex-direction:column;
+    -webkit-justify-content:center;
+    justify-content:center;
+    -webkit-align-items:center;
+    align-items:center;
+    display: flex;
     width: 90%; 
     height: 80%; 
-    grid-template-columns: repeat(5, 1fr);
+    /* grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr); 
     grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-row-gap: 5px; */
     background: #fff;
     border: 10px solid gold; 
 }
 
 header { 
-    grid-area: 1 / 2 / 2 / 5;
+    flex-direction: flex-start;
     }
 
-.dealerlabel { 
-    grid-area: 2 / 2 / 3 / 3;
-    }
-
-.dealercards { 
-    grid-area: 2 / 3 / 3 / 5; 
-
-     }
 
 .buttons { 
-    grid-area: 3 / 2 / 4 / 5;
+    /* grid-area: 3 / 2 / 4 / 5; */
     height: 100px;
     display: flex;  
     align-content: center; 
@@ -61,14 +61,12 @@ header {
      }
 
 .playerlabel { 
-    grid-area: 4 / 2 / 5 / 3;
     text-align: left;
     font-size: 20px; 
     
      }
 
 .playercards { 
-    grid-area: 4 / 3 / 5 / 5; 
     }
 
 /* BUTTON STYLE */

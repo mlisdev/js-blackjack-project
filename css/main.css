@@ -53,21 +53,11 @@ header {
 
 
 .buttons { 
-    /* grid-area: 3 / 2 / 4 / 5; */
     height: 100px;
     display: flex;  
     align-content: center; 
     justify-content: center; 
      }
-
-.playerlabel { 
-    text-align: left;
-    font-size: 20px; 
-    
-     }
-
-.playercards { 
-    }
 
 /* BUTTON STYLE */
 button {
@@ -84,6 +74,7 @@ button {
 
 
 /* CARD CSS  */
+
 .card {
   box-sizing: border-box;
   display: inline-block;

@@ -16,7 +16,9 @@ let shuffledDeck;
 /*----- cached element references -----*/
 // const cards; 
 // const messages;  
-const shuffledContainer = document.getElementById('shuffled-deck-container');
+const playerContainer = document.getElementById('player-deck-container');
+const dealerContainer = document.getElementById('dealer-deck-container');
+const tempDeck = [...masterDeck];
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
@@ -29,31 +31,43 @@ document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 /*----- functions -----*/
 
 function getPlayerCards() { 
-    const tempDeck = [...masterDeck];
-    shuffledDeck = [];
-    while (tempDeck.length > 50) {
+    playerHand = [];
+    for (i = 0; i < 2; i++) {
         // Get a random index for a card still in the tempDeck
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
         //console.log(rndIdx); 
         // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-        shuffledDeck.push(tempDeck.splice(rndIdx,1)[0]);
+        playerHand.push(tempDeck.splice(rndIdx,1)[0]);
     }
     //console.log(tempDeck.length); 
-    renderDeckInContainer(shuffledDeck, shuffledContainer);
+    renderDeckInContainer(playerHand, playerContainer);
 };
 
+
+function getDealerCards() { 
+    dealerHand = [];
+    //while (tempDeck.length > 48) 
+    for (i = 0; i < 2; i++) {
+        // Get a random index for a card still in the tempDeck
+        const rndIdx = Math.floor(Math.random() * tempDeck.length);
+        //console.log(rndIdx); 
+        // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
+        dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
+    }
+    //console.log(tempDeck.length); 
+    renderDeckInContainer(dealerHand, dealerContainer);
+
+};
 getPlayerCards(); 
+getDealerCards(); 
 
 function hitPlayerDeck(){ 
-    console.log("hey girl hey"); 
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
+    playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
+    renderDeckInContainer(playerHand, playerContainer);
 };
 
-// function to determine winner
-// function getWin() { 
 
-// }
-
-// init();
 
 
 
@@ -99,4 +113,6 @@ function buildMasterDeck() {
     return deck;
 }
 
-//renderShuffledDeck();
+// init(){
+
+// }; 

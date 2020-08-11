@@ -31,55 +31,8 @@ document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 
 /*----- functions -----*/
 
-function getPlayerCards() { 
-    for (i = 0; i < 2; i++) {
-        // Get a random index for a card still in the tempDeck
-        const rndIdx = Math.floor(Math.random() * tempDeck.length);
-        //console.log(rndIdx); 
-        // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-        playerHand.push(tempDeck.splice(rndIdx,1)[0]);
-    }
-    //console.log(tempDeck.length); 
-    renderDeckInContainer(playerHand, playerContainer);
-};
-
-
-function getDealerCards() { 
-    //while (tempDeck.length > 48) 
-    for (i = 0; i < 2; i++) {
-        // Get a random index for a card still in the tempDeck
-        const rndIdx = Math.floor(Math.random() * tempDeck.length);
-        //console.log(rndIdx); 
-        // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-        dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
-    }
-    //console.log(tempDeck.length); 
-    renderDeckInContainer(dealerHand, dealerContainer);
-
-};
-
-
-function hitPlayerDeck(){ 
-    const rndIdx = Math.floor(Math.random() * tempDeck.length);
-    playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
-    renderDeckInContainer(playerHand, playerContainer);
-};
-
-// var getGameTotal = playerHand.reduce(function(a, b){ 
-//     a.sum += b.score; 
-//     return a; 
-// })
-
-function renderDeckInContainer(deck, container) {
-    container.innerHTML = '';
-    // Let's build the cards as a string of HTML
-    // Use reduce when you want to 'reduce' the array into a single thing - in this case a string of HTML markup 
-    const cardsHtml = deck.reduce(function (html, card) {
-        return html + `<div class="card ${card.face}"></div>`;
-    }, '');
-    container.innerHTML = cardsHtml;
-}
-
+//builds masterDeck for game, used in tempDeck and for shuffledDeck 
+// previously provided JClark code 
 function buildMasterDeck() {
     const deck = [];
     // Use nested forEach to generate card objects
@@ -94,12 +47,79 @@ function buildMasterDeck() {
         });
     });
     return deck;
+}; 
+
+// renders cards on DOM -- previously provided JClark code 
+function renderDeckInContainer(deck, container) {
+    container.innerHTML = '';
+    const cardsHtml = deck.reduce(function (html, card) {
+        return html + `<div class="card ${card.face}"></div>`;
+    }, '');
+    container.innerHTML = cardsHtml;
+}; 
+
+
+// creates random index and temp deck for game 
+// pushes 2 random cards into playerHand array from temp deck  
+// displays cards on DOM
+function getPlayerCards() { 
+    for (i = 0; i < 2; i++) {
+        const rndIdx = Math.floor(Math.random() * tempDeck.length);
+        //console.log(rndIdx); 
+        playerHand.push(tempDeck.splice(rndIdx,1)[0]);
+    }
+    renderDeckInContainer(playerHand, playerContainer);
+    sum = doThePlayerMath(); 
+};
+
+
+// pushes 2 random cards into dealerHand array from same temp deck as playerHand
+// displays cards on DOM
+function getDealerCards() { 
+    for (i = 0; i < 2; i++) {
+        const rndIdx = Math.floor(Math.random() * tempDeck.length);
+        dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
+    }
+    renderDeckInContainer(dealerHand, dealerContainer);
+
+};
+
+// when player hits "hit me!" button, function adds new card to playerHand array and displays on DOM 
+
+function hitPlayerDeck(){ 
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
+    playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
+    renderDeckInContainer(playerHand, playerContainer);
+    // sums up cards in playerHand array 
+    sum = doThePlayerMath();
+};
+
+// loops over playerHand array and sums up cards in hand 
+function doThePlayerMath ()
+{
+    sum = 0;
+    for (i = 0; i < playerHand.length; i++)
+    {
+        sum += playerHand[i].value;
+    }
+    return sum;
 }
 
+// loops over dealerHand array and sums up cards in hand 
+function doTheDealerMath() {
+    sum = 0;
+    for (i = 0; i < dealerHand.length; i++) {
+        sum += dealerHand[i].value;
+    }
+    return sum;
+}
+
+// initializes board 
 function init() { 
     console.log("hello"); 
     getPlayerCards();
     getDealerCards(); 
 }; 
 
+// runs initial code on DOM 
 init(); 

@@ -22,14 +22,16 @@ let playerHand = [];
 let dealerHand = []; 
 const dealerScore = document.getElementById('dealer-score'); 
 const playerScore = document.getElementById('player-score')
+let playerStayed = false; 
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
 document.getElementById('hit').addEventListener('click', hitPlayerDeck); 
+//click "stay" to end game" 
+document.getElementById('stay').addEventListener('click', playerStayed)
+// restart game 
+document.getElementById('play-again').addEventListener('click', init); 
 
-// document.getElementById('stay').addEventListener('click', getWin); 
-
-// click on "stay" to end game(and other stuff)
 
 /*----- functions -----*/
 
@@ -95,7 +97,8 @@ function hitPlayerDeck(){
     renderDeckInContainer(playerHand, playerContainer);
     // sums up cards in playerHand array 
     sum = doThePlayerMath();
-};
+    playerScore.innerHTML = `player now has: ${sum}`;
+    };
 
 // loops over playerHand array and sums up cards in hand 
 function doThePlayerMath ()
@@ -106,7 +109,7 @@ function doThePlayerMath ()
         sum += playerHand[i].value;
     }
     return sum;
-}
+};
 
 // loops over dealerHand array and sums up cards in hand 
 function doTheDealerMath() {
@@ -115,16 +118,32 @@ function doTheDealerMath() {
         sum += dealerHand[i].value;
     }
     return sum;
+};
+
+// function hitDealerCard(){ 
+
+// }; 
+
+function playerStayed(){ 
+    
 }
 
-
+function getWin(){ 
+    let winner = null;
+    if (playerStayed) { 
+        return null; 
+    }
+    }; 
 
 // initializes board 
 function init() { 
     console.log("hello"); 
+    // dealerContainer; 
+    // playerContainer; 
     getPlayerCards();
     getDealerCards(); 
 }; 
 
 // runs initial code on DOM 
 init(); 
+

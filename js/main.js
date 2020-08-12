@@ -139,12 +139,14 @@ function check() {
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
     }
+    // doesn't work 
     else if (doThePlayerMath() === 21){ 
         winMsg.innerHTML = 'Player WON'
     }
     else if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'Dealer LOST, Player WON';
     }
+    //doesn't work 
     else if (doTheDealerMath() === 21) {
         winMsg.innerHTML = 'Dealer WON'
     }
@@ -162,11 +164,7 @@ function playerStayed() {
 
     }; 
 
-
-
-    // new function, restartGame, clear out results 
-    // clear out container, clear out array 
-    // clear out master deck 
+    //restarts game by reloading page 
 function restartGame() { 
     document.location.href = ''; 
 }

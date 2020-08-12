@@ -11,7 +11,7 @@ const masterDeck = buildMasterDeck();
 /*----- app's state (variables) -----*/
 let shuffledDeck; 
 let winner; 
-let turn; 
+let score; 
 
 
 /*----- cached element references -----*/
@@ -20,12 +20,14 @@ const dealerContainer = document.getElementById('dealer-deck-container');
 const tempDeck = [...masterDeck];
 let playerHand = [];
 let dealerHand = []; 
+const dealerScore = document.getElementById('dealer-score'); 
+const playerScore = document.getElementById('player-score')
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
 document.getElementById('hit').addEventListener('click', hitPlayerDeck); 
+
 // document.getElementById('stay').addEventListener('click', getWin); 
-// document.querySelector('button').addEventListener('click', renderShuffledDeck);
 
 // click on "stay" to end game(and other stuff)
 
@@ -70,6 +72,7 @@ function getPlayerCards() {
     }
     renderDeckInContainer(playerHand, playerContainer);
     sum = doThePlayerMath(); 
+    playerScore.innerHTML = `player has: ${doThePlayerMath()}`;
 };
 
 
@@ -81,7 +84,7 @@ function getDealerCards() {
         dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
     }
     renderDeckInContainer(dealerHand, dealerContainer);
-
+    dealerScore.innerHTML = `dealer has: ${doTheDealerMath()}`;
 };
 
 // when player hits "hit me!" button, function adds new card to playerHand array and displays on DOM 

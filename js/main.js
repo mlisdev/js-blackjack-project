@@ -133,22 +133,20 @@ function doTheDealerMath() {
 
 
 function check() {
-    if (doThePlayerMath() > 21) {
+    if (doTheDealerMath() === 21) {
+        winMsg.innerHTML = 'Dealer WON'
+    }
+    else if (doThePlayerMath() === 21) {
+        winMsg.innerHTML = 'Player WON'
+    }
+    else if (doThePlayerMath() > 21) {
         winMsg.innerHTML = 'Player LOST, Dealer WON';
     }
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
     }
-    // doesn't work 
-    else if (doThePlayerMath() === 21){ 
-        winMsg.innerHTML = 'Player WON'
-    }
     else if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'Dealer LOST, Player WON';
-    }
-    //doesn't work 
-    else if (doTheDealerMath() === 21) {
-        winMsg.innerHTML = 'Dealer WON'
     }
     };
 

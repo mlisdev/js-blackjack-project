@@ -21,14 +21,14 @@ const tempDeck = [...masterDeck];
 let playerHand = [];
 let dealerHand = []; 
 const dealerScore = document.getElementById('dealer-score'); 
-const playerScore = document.getElementById('player-score')
-let playerStayed = false; 
+const playerScore = document.getElementById('player-score'); 
+const winMsg = document.getElementById('results'); 
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
 document.getElementById('hit').addEventListener('click', hitPlayerDeck); 
 //click "stay" to end game" 
-document.getElementById('stay').addEventListener('click', playerStayed)
+document.getElementById('stay').addEventListener('click', playerStayed); 
 // restart game 
 document.getElementById('play-again').addEventListener('click', init); 
 
@@ -98,6 +98,9 @@ function hitPlayerDeck(){
     // sums up cards in playerHand array 
     sum = doThePlayerMath();
     playerScore.innerHTML = `player now has: ${sum}`;
+    if (playerScore > 21){ 
+        return `you lose!`
+    }
     };
 
 // loops over playerHand array and sums up cards in hand 
@@ -125,21 +128,17 @@ function doTheDealerMath() {
 // }; 
 
 function playerStayed(){ 
-    
+    // check if computer busts 
+    // check if player won 
 }
 
-function getWin(){ 
-    let winner = null;
-    if (playerStayed) { 
-        return null; 
-    }
-    }; 
+// new function, restartGame, clear out results 
+// clear out container, clear out array 
+// clear out master deck 
 
 // initializes board 
 function init() { 
     console.log("hello"); 
-    // dealerContainer; 
-    // playerContainer; 
     getPlayerCards();
     getDealerCards(); 
 }; 

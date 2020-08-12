@@ -30,7 +30,7 @@ document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 //click "stay" to end game" 
 var stayClick = document.getElementById('stay').addEventListener('click', playerStayed);
 // restart game 
-document.getElementById('play-again').addEventListener('click', init);
+document.getElementById('play-again').addEventListener('click', restartGame);
 
 
 /*----- functions -----*/
@@ -69,7 +69,6 @@ function renderDeckInContainer(deck, container) {
 function getPlayerCards() {
     for (i = 0; i < 2; i++) {
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
-        //console.log(rndIdx); 
         playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
     }
     renderDeckInContainer(playerHand, playerContainer);
@@ -134,23 +133,19 @@ function doTheDealerMath() {
 
 
 function check() {
-    // this works 
     if (doThePlayerMath() > 21) {
         winMsg.innerHTML = 'Player LOST, Dealer WON';
     }
-    //this works 
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
     }
-    // this doesn't work 
-    else if (doThePlayerMath() == 21){ 
+    else if (doThePlayerMath() === 21){ 
         winMsg.innerHTML = 'Player WON'
     }
     else if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'Dealer LOST, Player WON';
     }
-    // this doesn't work 
-    else if (doTheDealerMath() == 21) {
+    else if (doTheDealerMath() === 21) {
         winMsg.innerHTML = 'Dealer WON'
     }
     };
@@ -158,11 +153,9 @@ function check() {
 function playerStayed() {
     hitDealerDeck();
     console.log(doTheDealerMath()); 
-    //this works 
     if (doTheDealerMath() > 21){ 
         winMsg.innerHTML = 'Dealer LOST'
     }
-    // this doesn't work 
     else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() > doThePlayerMath()){ 
         winMsg.innerHTML = 'Dealer WIN'
     }
@@ -174,15 +167,16 @@ function playerStayed() {
     // new function, restartGame, clear out results 
     // clear out container, clear out array 
     // clear out master deck 
-
+function restartGame() { 
+    document.location.href = ''; 
+}
 
 
     // initializes board 
-    function init() {
-        console.log("hello");
-        getPlayerCards();
-        getDealerCards();
-    };
+function init() {
+    getPlayerCards();
+    getDealerCards();
+};
 
-    // runs initial code on DOM 
-    init(); 
+// runs initial code on DOM 
+init(); 

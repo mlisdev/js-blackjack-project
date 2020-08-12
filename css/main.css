@@ -32,28 +32,43 @@ h1 {
 
 .parent {
     display:-webkit-flex;
-    display:flex;
-    -webkit-flex-direction:column;
-    flex-direction:column;
-    -webkit-justify-content:center;
-    justify-content:center;
-    -webkit-align-items:center;
-    align-items: center;
-    align-content: space-around; 
     display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center; 
+    padding: 5px; 
     width: 90%; 
+    height: 70%;
     background: #fff;
-    border: 10px solid gold; 
-}
-
-.dealer-cards { 
-  align-self: center;
+    border: 10px solid goldenrod;  
+    justify-content: flex-start; 
 }
 
 .buttons { 
   height: 5%;
   margin: 10px; 
 }
+
+#results { 
+  font-size: 22px; 
+  font-family: 'Poiret One', cursive; 
+  text-align: center; 
+  color: navy; 
+  font-weight: bold; 
+  padding: 20px; 
+  height: 1%; 
+}
+
+.scores {
+  height: 5%; 
+}
+
+.dealer-cards, .player-cards { 
+  height: 20%;}
+
 
 /* BUTTON STYLE */
 button {

@@ -9,9 +9,9 @@ const masterDeck = buildMasterDeck();
 //renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
 /*----- app's state (variables) -----*/
-let shuffledDeck; 
-let winner; 
-let score; 
+let shuffledDeck;
+let winner;
+let score;
 
 
 /*----- cached element references -----*/
@@ -19,18 +19,18 @@ const playerContainer = document.getElementById('player-deck-container');
 const dealerContainer = document.getElementById('dealer-deck-container');
 const tempDeck = [...masterDeck];
 let playerHand = [];
-let dealerHand = []; 
-const dealerScore = document.getElementById('dealer-score'); 
-const playerScore = document.getElementById('player-score'); 
-const winMsg = document.getElementById('results'); 
+let dealerHand = [];
+const dealerScore = document.getElementById('dealer-score');
+const playerScore = document.getElementById('player-score');
+const winMsg = document.getElementById('results');
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
-document.getElementById('hit').addEventListener('click', hitPlayerDeck); 
+document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 //click "stay" to end game" 
-document.getElementById('stay').addEventListener('click', playerStayed); 
+// document.getElementById('stay').addEventListener('click', playerStayed);
 // restart game 
-document.getElementById('play-again').addEventListener('click', init); 
+document.getElementById('play-again').addEventListener('click', init);
 
 
 /*----- functions -----*/
@@ -51,7 +51,7 @@ function buildMasterDeck() {
         });
     });
     return deck;
-}; 
+};
 
 // renders cards on DOM -- previously provided JClark code 
 function renderDeckInContainer(deck, container) {
@@ -60,27 +60,28 @@ function renderDeckInContainer(deck, container) {
         return html + `<div class="card ${card.face}"></div>`;
     }, '');
     container.innerHTML = cardsHtml;
-}; 
+};
 
 
 // creates random index and temp deck for game 
 // pushes 2 random cards into playerHand array from temp deck  
 // displays cards on DOM
-function getPlayerCards() { 
+function getPlayerCards() {
     for (i = 0; i < 2; i++) {
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
         //console.log(rndIdx); 
-        playerHand.push(tempDeck.splice(rndIdx,1)[0]);
+        playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
     }
     renderDeckInContainer(playerHand, playerContainer);
-    sum = doThePlayerMath(); 
+    sum = doThePlayerMath();
     playerScore.innerHTML = `player has: ${doThePlayerMath()}`;
+    check();
 };
 
 
 // pushes 2 random cards into dealerHand array from same temp deck as playerHand
 // displays cards on DOM
-function getDealerCards() { 
+function getDealerCards() {
     for (i = 0; i < 2; i++) {
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
         dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
@@ -91,24 +92,31 @@ function getDealerCards() {
 
 // when player hits "hit me!" button, function adds new card to playerHand array and displays on DOM 
 
-function hitPlayerDeck(){ 
+function hitPlayerDeck() {
     const rndIdx = Math.floor(Math.random() * tempDeck.length);
     playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
     renderDeckInContainer(playerHand, playerContainer);
     // sums up cards in playerHand array 
     sum = doThePlayerMath();
     playerScore.innerHTML = `player now has: ${sum}`;
-    if (playerScore > 21){ 
-        return `you lose!`
-    }
+    check();
+};
+
+function hitDealerDeck() {
+    sum = doTheDealerMath();
+    while (sum < 17) {
+        const rndIdx = Math.floor(Math.random() * tempDeck.length);
+        dealerHand.push(tempDeck.splice(rndIdx, 1)[0]);
+        renderDeckInContainer(dealerHand, dealerContainer);
+        sum = doTheDealerMath();
     };
+    playerScore.innerHTML = `dealer now has: ${sum}`;
+};
 
 // loops over playerHand array and sums up cards in hand 
-function doThePlayerMath ()
-{
+function doThePlayerMath() {
     sum = 0;
-    for (i = 0; i < playerHand.length; i++)
-    {
+    for (i = 0; i < playerHand.length; i++) {
         sum += playerHand[i].value;
     }
     return sum;
@@ -127,22 +135,33 @@ function doTheDealerMath() {
 
 // }; 
 
-function playerStayed(){ 
-    // check if computer busts 
-    // check if player won 
-}
+// function playerStayed() {
+//     // check if computer busts 
+//     // check if player won 
+// }
 
-// new function, restartGame, clear out results 
-// clear out container, clear out array 
-// clear out master deck 
+function check() {
+    if (doThePlayerMath() > 21) {
+        winMsg.innerHTML = 'Player LOST, Dealer WON';
+    }
+    else if (doThePlayerMath() < 21) {
+        winMsg.innerHTML = 'will you stay or hit?';
+    }
+    };
 
-// initializes board 
-function init() { 
-    console.log("hello"); 
-    getPlayerCards();
-    getDealerCards(); 
-}; 
 
-// runs initial code on DOM 
-init(); 
+    // new function, restartGame, clear out results 
+    // clear out container, clear out array 
+    // clear out master deck 
 
+
+
+    // initializes board 
+    function init() {
+        console.log("hello");
+        getPlayerCards();
+        getDealerCards();
+    };
+
+    // runs initial code on DOM 
+    init(); 

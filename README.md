@@ -17,7 +17,7 @@ I switched to a Flexbox column layout and decided to display things vertically.
 * Javascript (vanilla)
 
 ## Link & Instructions 
-- [https://mlisdev.github.io/js-blackjack-project/](Click here to play my black jack game!)
+- (https://mlisdev.github.io/js-blackjack-project/)
 - On page load, the game will distribute and sum the 2 cards to you and the dealer. 
 - Based on the scores, decide if you want to "hit" your hand or "stay." 
 - Once you make your choice, the game will declare a winner. 

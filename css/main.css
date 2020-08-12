@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 /* MAIN BODY CSS */
+html { 
+  margin: 0; 
+}
+
 body { 
     background: url('../images/artdeco.png');
     background-repeat: repeat ; 
@@ -9,12 +13,10 @@ body {
     width: 100vw;  
     display: flex;
     margin: 0 auto;
-    max-width: 56em;
-    padding: 1em 0;
+    padding: 0;
     justify-content: center; 
     align-items: center;
     font-family: 'Mulish', sans-serif; 
-    font-size: 14pt; 
 } 
 
 svg {
@@ -25,6 +27,7 @@ h1 {
     font-size: 34pt; 
     font-family: 'Poiret One', cursive;
     text-align: center; 
+    margin: 0;  
 }
 
 .parent {
@@ -35,29 +38,22 @@ h1 {
     -webkit-justify-content:center;
     justify-content:center;
     -webkit-align-items:center;
-    align-items:center;
+    align-items: center;
+    align-content: space-around; 
     display: flex;
     width: 90%; 
-    height: 80%; 
-    /* grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr); 
-    grid-column-gap: 5px;
-    grid-row-gap: 5px; */
     background: #fff;
     border: 10px solid gold; 
 }
 
-header { 
-    flex-direction: flex-start;
-    }
-
+.dealer-cards { 
+  align-self: center;
+}
 
 .buttons { 
-    height: 100px;
-    display: flex;  
-    align-content: center; 
-    justify-content: center; 
-     }
+  height: 5%;
+  margin: 10px; 
+}
 
 /* BUTTON STYLE */
 button {
@@ -65,7 +61,7 @@ button {
   border: none;
   color: white;
   padding: 15px 32px;
-  margin: 20px; 
+  margin: px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;

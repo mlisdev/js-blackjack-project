@@ -114,6 +114,8 @@ function doTheDealerMath() {
     return sum;
 }
 
+
+
 // initializes board 
 function init() { 
     console.log("hello"); 

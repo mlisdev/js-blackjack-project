@@ -28,7 +28,7 @@ const winMsg = document.getElementById('results');
 // click on "hit" to assign a card
 document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 //click "stay" to end game" 
-// document.getElementById('stay').addEventListener('click', playerStayed);
+var stayClick = document.getElementById('stay').addEventListener('click', playerStayed);
 // restart game 
 document.getElementById('play-again').addEventListener('click', init);
 
@@ -110,7 +110,7 @@ function hitDealerDeck() {
         renderDeckInContainer(dealerHand, dealerContainer);
         sum = doTheDealerMath();
     };
-    playerScore.innerHTML = `dealer now has: ${sum}`;
+    dealerScore.innerHTML = `dealer now has: ${sum}`;
 };
 
 // loops over playerHand array and sums up cards in hand 
@@ -131,14 +131,6 @@ function doTheDealerMath() {
     return sum;
 };
 
-// function hitDealerCard(){ 
-
-// }; 
-
-// function playerStayed() {
-//     // check if computer busts 
-//     // check if player won 
-// }
 
 function check() {
     if (doThePlayerMath() > 21) {
@@ -148,6 +140,18 @@ function check() {
         winMsg.innerHTML = 'will you stay or hit?';
     }
     };
+
+function playerStayed() {
+    console.log(dealerHand.length); 
+    hitDealerDeck();
+    if (doTheDealerMath() > 21){ 
+        winMsg.innerHTML = 'Dealer LOST'
+    }
+    else if (doTheDealerMath() < 21 && doTheDealerMath > 17){ 
+        winMsg.innerHTML = 'Dealer WIN'
+    }
+    }; 
+
 
 
     // new function, restartGame, clear out results 

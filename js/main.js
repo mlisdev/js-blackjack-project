@@ -133,19 +133,19 @@ function doTheDealerMath() {
 // checks the dealer and player hands for winning situations and renders messages
 function check() {
     if (doTheDealerMath() === 21) {
-        winMsg.innerHTML = 'Dealer WON'
+        winMsg.innerHTML = 'dealer wins! player loses. :('
     }
     else if (doThePlayerMath() === 21) {
-        winMsg.innerHTML = 'Player WON'
+        winMsg.innerHTML = 'player wins! dealer loses!'
     }
     else if (doThePlayerMath() > 21) {
-        winMsg.innerHTML = 'Player LOST, Dealer WON';
+        winMsg.innerHTML = 'dealer wins! player loses. :(';
     }
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
     }
     else if (doTheDealerMath() > 21) {
-        winMsg.innerHTML = 'Dealer LOST, Player WON';
+        winMsg.innerHTML = 'player wins! dealer loses!';
     }
 };
 
@@ -153,12 +153,12 @@ function check() {
 function playerStayed() {
     hitDealerDeck();
     if (doTheDealerMath() > 21) {
-        winMsg.innerHTML = 'Dealer LOST'
+        winMsg.innerHTML = 'player wins! dealer loses!'
     }
     else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()) {
-        winMsg.innerHTML = 'Dealer WIN'
+        winMsg.innerHTML = 'dealer wins! :('
     }
-    else winMsg.innerHTML = 'Player WIN'
+    else winMsg.innerHTML = 'player wins! :)'
 };
 
 //restarts game by reloading page 

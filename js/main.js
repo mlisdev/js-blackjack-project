@@ -6,7 +6,6 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', '
 
 // build master deck of cards - provided 
 const masterDeck = buildMasterDeck();
-//renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
 /*----- app's state (variables) -----*/
 let shuffledDeck;
@@ -29,7 +28,7 @@ const winMsg = document.getElementById('results');
 document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 //click "stay" to end game" 
 var stayClick = document.getElementById('stay').addEventListener('click', playerStayed);
-// restart game 
+// refresh page/restart game 
 document.getElementById('play-again').addEventListener('click', restartGame);
 
 
@@ -91,7 +90,6 @@ function getDealerCards() {
 };
 
 // when player hits "hit me!" button, function adds new card to playerHand array and displays on DOM 
-
 function hitPlayerDeck() {
     const rndIdx = Math.floor(Math.random() * tempDeck.length);
     playerHand.push(tempDeck.splice(rndIdx, 1)[0]);
@@ -102,6 +100,7 @@ function hitPlayerDeck() {
     check();
 };
 
+// hits the dealer deck if the dealer hand is less than 17. 
 function hitDealerDeck() {
     sum = doTheDealerMath();
     while (sum < 17) {
@@ -131,7 +130,7 @@ function doTheDealerMath() {
     return sum;
 };
 
-
+// checks the dealer and player hands for winning situations and renders messages
 function check() {
     if (doTheDealerMath() === 21) {
         winMsg.innerHTML = 'Dealer WON'
@@ -150,25 +149,25 @@ function check() {
     }
     };
 
+// if player hits "stay" button, function does the math and renders win or loss message 
 function playerStayed() {
     hitDealerDeck();
-    console.log(doTheDealerMath()); 
     if (doTheDealerMath() > 21){ 
         winMsg.innerHTML = 'Dealer LOST'
     }
     else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() > doThePlayerMath()){ 
         winMsg.innerHTML = 'Dealer WIN'
     }
-
+    else winMsg.innerHTML = 'Player WIN'
     }; 
 
-    //restarts game by reloading page 
+//restarts game by reloading page 
 function restartGame() { 
     document.location.href = ''; 
 }
 
 
-    // initializes board 
+// initializes board 
 function init() {
     getPlayerCards();
     getDealerCards();

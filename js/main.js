@@ -155,7 +155,7 @@ function playerStayed() {
     if (doTheDealerMath() > 21){ 
         winMsg.innerHTML = 'Dealer LOST'
     }
-    else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() > doThePlayerMath()){ 
+    else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()){ 
         winMsg.innerHTML = 'Dealer WIN'
     }
     else winMsg.innerHTML = 'Player WIN'

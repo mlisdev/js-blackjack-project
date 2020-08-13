@@ -21,7 +21,7 @@ I switched to a Flexbox column layout and decided to display things vertically.
 - On page load, the game will distribute and sum the 2 cards to you and the dealer. 
 - Based on the scores, decide if you want to "hit" your hand or "stay." 
 - Once you make your choice, the game will declare a winner. 
-- _Remember_: in Black Jack you want to try and get to 21. The dealer will win if you =/= 21 and they land between 17 and 21. 
+- _Remember_: in Black Jack, you want to try and beat the dealer by getting as close to 21 without going over, AND scoring higher than the dealer. 
 
 ## Icebox Items 
 - Render one of the dealer's cards upside down and with a secret value. 

@@ -86,7 +86,7 @@ function getDealerCards() {
     }
     renderDeckInContainer(dealerHand, dealerContainer);
     dealerScore.innerHTML = `dealer has: ${doTheDealerMath()}`;
-    check(); 
+    check();
 };
 
 // when player hits "hit me!" button, function adds new card to playerHand array and displays on DOM 
@@ -147,23 +147,23 @@ function check() {
     else if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'Dealer LOST, Player WON';
     }
-    };
+};
 
 // if player hits "stay" button, function does the math and renders win or loss message 
 function playerStayed() {
     hitDealerDeck();
-    if (doTheDealerMath() > 21){ 
+    if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'Dealer LOST'
     }
-    else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()){ 
+    else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()) {
         winMsg.innerHTML = 'Dealer WIN'
     }
     else winMsg.innerHTML = 'Player WIN'
-    }; 
+};
 
 //restarts game by reloading page 
-function restartGame() { 
-    document.location.href = ''; 
+function restartGame() {
+    document.location.href = '';
 }
 
 

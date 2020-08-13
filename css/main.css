@@ -47,27 +47,35 @@ h1 {
     justify-content: flex-start; 
 }
 
-.buttons { 
-  height: 5%;
-  margin: 10px; 
-}
 
 #results { 
   font-size: 22px; 
   font-family: 'Poiret One', cursive; 
   text-align: center; 
-  color: navy; 
+  align-content: center; 
+  justify-content: center; 
+  color: white; 
   font-weight: bold; 
-  padding: 20px; 
-  height: 1%; 
+  background: goldenrod; 
+  border-radius: 25px; 
+  padding: 10px; 
 }
 
 .scores {
-  height: 5%; 
+  text-align: center; 
+  align-content: center; 
+  justify-content: center; 
+  padding: 15px; 
+  font-weight: bold; 
+  color: navy; 
+  font-size: 20px; 
 }
 
 .dealer-cards, .player-cards { 
-  height: 20%;}
+  height: 20%;
+  text-align: center; 
+  align-content: center; 
+  justify-content: center; }
 
 
 /* BUTTON STYLE */
@@ -433,3 +441,9 @@ button {
   .card.east.shadow,
   .card.E.shadow {
     box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
+
+  @media screen and (min-width: 640px){
+    .flex-container {
+        display: flex;
+    }    
+}

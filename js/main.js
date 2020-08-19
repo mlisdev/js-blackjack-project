@@ -25,11 +25,12 @@ const winMsg = document.getElementById('results');
 
 /*----- event listeners -----*/
 // click on "hit" to assign a card
-document.getElementById('hit').addEventListener('click', hitPlayerDeck);
+let hitBtn = document.getElementById('hit').addEventListener('click', hitPlayerDeck);
 //click "stay" to end game" 
 var stayClick = document.getElementById('stay').addEventListener('click', playerStayed);
 // refresh page/restart game 
 document.getElementById('play-again').addEventListener('click', restartGame);
+
 
 
 /*----- functions -----*/
@@ -130,10 +131,12 @@ function doTheDealerMath() {
     return sum;
 };
 
+
+
 // checks the dealer and player hands for winning situations and renders messages
 function check() {
     if (doTheDealerMath() === 21) {
-        winMsg.innerHTML = 'dealer wins! player loses. :('
+        winMsg.innerHTML = 'dealer wins! player loses. :('; 
     }
     else if (doThePlayerMath() === 21) {
         winMsg.innerHTML = 'player wins! dealer loses!'
@@ -141,11 +144,11 @@ function check() {
     else if (doThePlayerMath() > 21) {
         winMsg.innerHTML = 'dealer wins! player loses. :(';
     }
+        else if (doTheDealerMath() > 21) {
+        winMsg.innerHTML = 'player wins! dealer loses!';
+    }
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
-    }
-    else if (doTheDealerMath() > 21) {
-        winMsg.innerHTML = 'player wins! dealer loses!';
     }
 };
 
@@ -153,12 +156,15 @@ function check() {
 function playerStayed() {
     hitDealerDeck();
     if (doTheDealerMath() > 21) {
-        winMsg.innerHTML = 'player wins! dealer loses!'
+        winMsg.innerHTML = 'player wins! dealer loses!'; 
+        document.getElementById('hit').disabled = true;
     }
     else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()) {
-        winMsg.innerHTML = 'dealer wins! :('
+        winMsg.innerHTML = 'dealer wins! :(';
+        document.getElementById('hit').disabled = true;
     }
-    else winMsg.innerHTML = 'player wins! :)'
+    else winMsg.innerHTML = 'player wins! :)';
+    document.getElementById('hit').disabled = true;
 };
 
 //restarts game by reloading page 

@@ -137,34 +137,43 @@ function doTheDealerMath() {
 function check() {
     if (doTheDealerMath() === 21) {
         winMsg.innerHTML = 'dealer wins! player loses. :('; 
+        disableBtn(); 
     }
     else if (doThePlayerMath() === 21) {
-        winMsg.innerHTML = 'player wins! dealer loses!'
+        winMsg.innerHTML = 'player wins! dealer loses!'; 
+        disableBtn(); 
     }
     else if (doThePlayerMath() > 21) {
         winMsg.innerHTML = 'dealer wins! player loses. :(';
+        disableBtn(); 
     }
         else if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'player wins! dealer loses!';
+        disableBtn(); 
     }
     else if (doThePlayerMath() < 21) {
         winMsg.innerHTML = 'will you stay or hit?';
     }
 };
 
+function disableBtn(){ 
+    document.getElementById('hit').disabled = true;
+    document.getElementById('stay').disabled = true; 
+}
+
 // if player hits "stay" button, function does the math and renders win or loss message 
 function playerStayed() {
     hitDealerDeck();
     if (doTheDealerMath() > 21) {
         winMsg.innerHTML = 'player wins! dealer loses!'; 
-        document.getElementById('hit').disabled = true;
+        disableBtn(); 
     }
     else if (doTheDealerMath() <= 21 && doTheDealerMath() >= 17 && doTheDealerMath() >= doThePlayerMath()) {
         winMsg.innerHTML = 'dealer wins! :(';
-        document.getElementById('hit').disabled = true;
+        disableBtn(); 
     }
     else winMsg.innerHTML = 'player wins! :)';
-    document.getElementById('hit').disabled = true;
+    disableBtn(); 
 };
 
 //restarts game by reloading page 

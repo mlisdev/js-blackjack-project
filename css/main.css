@@ -24,7 +24,7 @@ svg {
 }
 
 h1 { 
-    font-size: 34pt; 
+    font-size: 22pt; 
     font-family: 'Bellota', cursive;
     text-align: center; 
     margin: 0;  
@@ -39,8 +39,8 @@ h1 {
     justify-content: center;
     -webkit-align-items: center;
     align-items: center; 
-    padding: 20px; 
-    width: auto; 
+    padding: 5px; 
+    width: 40%; 
     height: auto;
     background: #fff;
     border: 10px solid goldenrod;  
@@ -58,27 +58,32 @@ h1 {
   font-weight: bold; 
   background: goldenrod; 
   border-radius: 25px; 
-  padding: 10px; 
+  padding: 5px; 
+
 }
 
 .scores {
   text-align: center; 
   align-content: center; 
   justify-content: center; 
-  padding: 15px; 
+  padding: 5px; 
+  height: 20px; 
   font-weight: bold; 
   color: navy; 
   font-size: 20px; 
 }
 
 .dealer-cards, .player-cards { 
-  height: 20%;
+  height: 160px;
   text-align: center; 
   align-content: center; 
-  justify-content: center; }
+  justify-content: center;  }
 
 
 /* BUTTON STYLE */
+.buttons { 
+  text-align: center; 
+}
 button {
   background-color: navy;
   border: none;
@@ -90,6 +95,12 @@ button {
   display: inline-block;
   font-size: 16px;
   border-radius: 25px;
+}
+
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 
